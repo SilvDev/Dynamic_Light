@@ -18,7 +18,7 @@
 
 
 
-#define PLUGIN_VERSION 		"1.9"
+#define PLUGIN_VERSION 		"1.10"
 
 /*======================================================================================
 	Plugin Info:
@@ -31,6 +31,9 @@
 
 ========================================================================================
 	Change Log:
+
+1.10 (07-Feb-2022)
+	- Fixed compile warnings. They did not show up before.
 
 1.9 (06-Feb-2022)
 	- Fixed the light potentially teleporting behind when too close to an object. Thanks to "KrutoyKolbas" for reporting.
@@ -827,9 +830,9 @@ void TeleportDynamicLight(int client, int entity)
 			if( fDist <= g_iCvarDist + 50 )
 			{
 				GetAngleVectors(vAng, vAng, NULL_VECTOR, NULL_VECTOR);
-				vPos[0] -= vAng[0] * (fDist > 50 ? 50 : fDist);
-				vPos[1] -= vAng[1] * (fDist > 50 ? 50 : fDist);
-				vPos[2] -= vAng[2] * (fDist > 50 ? 50 : fDist);
+				vPos[0] -= vAng[0] * (fDist > 50.0 ? 50.0 : fDist);
+				vPos[1] -= vAng[1] * (fDist > 50.0 ? 50.0 : fDist);
+				vPos[2] -= vAng[2] * (fDist > 50.0 ? 50.0 : fDist);
 				TeleportEntity(entity, vPos, NULL_VECTOR, NULL_VECTOR);
 			}
 			else
@@ -862,9 +865,9 @@ void TeleportDynamicLight(int client, int entity)
 				}
 
 				GetAngleVectors(vAng, vAng, NULL_VECTOR, NULL_VECTOR);
-				vPos[0] -= vAng[0] * (fDist > 50 ? 50 : fDist);
-				vPos[1] -= vAng[1] * (fDist > 50 ? 50 : fDist);
-				vPos[2] -= vAng[2] * (fDist > 50 ? 50 : fDist);
+				vPos[0] -= vAng[0] * (fDist > 50.0 ? 50.0 : fDist);
+				vPos[1] -= vAng[1] * (fDist > 50.0 ? 50.0 : fDist);
+				vPos[2] -= vAng[2] * (fDist > 50.0 ? 50.0 : fDist);
 				TeleportEntity(entity, vPos, NULL_VECTOR, NULL_VECTOR);
 
 				if( g_iLightState[client] == 0 )
